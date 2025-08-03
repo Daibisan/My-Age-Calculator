@@ -4,7 +4,107 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>MyAgeCalculator</title>
-        <link rel="stylesheet" href="./src/styles/dist/output.css" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="./src/styles/output.css" />
     </head>
-    <body></body>
+    <body
+        class="flex h-screen items-center justify-center bg-[hsl(0,0%,94%)] px-4 font-[Poppins]"
+    >
+        <div
+            id="wrapper"
+            class="mt-[-2rem] h-max w-max min-w-[248px] rounded-2xl rounded-br-[80px] bg-[hsl(0,100%,100%)] px-4 py-8 sm:px-6 md:px-8 md:py-9 lg:px-10 lg:py-10"
+        >
+            <div id="upper">
+                <ul
+                    id="input-container"
+                    class="flex justify-center gap-3 text-[0.5rem] sm:text-[0.6rem] md:text-[0.7rem] lg:justify-start lg:gap-5"
+                >
+                    <li>
+                        <label
+                            for="day-input"
+                            class="font-[700] tracking-[0.2em] text-[hsl(0,1%,44%)]"
+                            >DAY</label
+                        ><br />
+                        <input
+                            type="text"
+                            id="day-input"
+                            placeholder="DD"
+                            class="mt-1 w-full max-w-16 rounded-[5px] border-[1px] border-[hsl(0,0%,86%)] px-2 py-2 text-sm font-[700] outline-none focus:border-[hsl(259,100%,65%)] sm:max-w-20 sm:text-base md:max-w-24 md:px-3 md:text-lg lg:max-w-26 lg:px-4 lg:text-xl"
+                        />
+                    </li>
+                    <li>
+                        <label
+                            for="month-input"
+                            class="font-[700] tracking-[0.2em] text-[hsl(0,1%,44%)]"
+                            >MONTH</label
+                        ><br />
+                        <input
+                            type="text"
+                            id="month-input"
+                            placeholder="MM"
+                            class="mt-1 w-full max-w-16 rounded-[5px] border-[1px] border-[hsl(0,0%,86%)] px-2 py-2 text-sm font-[700] outline-none focus:border-[hsl(259,100%,65%)] sm:max-w-20 sm:text-base md:max-w-24 md:px-3 md:text-lg lg:max-w-26 lg:px-4 lg:text-xl"
+                        />
+                    </li>
+                    <li>
+                        <label
+                            for="year-input"
+                            class="font-[700] tracking-[0.2em] text-[hsl(0,1%,44%)]"
+                            >YEAR</label
+                        ><br />
+                        <input
+                            type="text"
+                            id="year-input"
+                            placeholder="YYYY"
+                            class="mt-1 w-full max-w-16 rounded-[5px] border-[1px] border-[hsl(0,0%,86%)] px-2 py-2 text-sm font-[700] outline-none focus:border-[hsl(259,100%,65%)] sm:max-w-20 sm:text-base md:max-w-24 md:px-3 md:text-lg lg:max-w-26 lg:px-4 lg:text-xl"
+                        />
+                    </li>
+                </ul>
+                <div
+                    id="submit-btn-container"
+                    class="relative mt-11 mb-11 sm:mt-13 sm:mb-13 md:mt-15 md:mb-15 lg:static lg:mt-0 lg:mb-0 lg:flex lg:items-center"
+                >
+                    <hr class="text-[hsl(0,0%,86%)] lg:w-[25.5rem]" />
+                    <div
+                        id="submit-btn"
+                        class="absolute top-1/2 right-1/2 w-fit translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-[hsl(259,100%,65%)] p-3 transition select-none hover:bg-[hsl(0,0%,0%)] sm:p-4 lg:static lg:translate-x-0 lg:translate-y-0"
+                    >
+                        <img
+                            src="./src/images/icon-arrow.svg"
+                            alt="Submit Arrow Image"
+                            class="size-5 sm:size-6 md:size-7"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div
+                id="lower"
+                class="flex flex-col text-[2.25rem]/10 italic sm:text-[2.85rem]/13 md:text-[3.45rem]/16 lg:text-[4.05rem]/18"
+            >
+                <p class="font-[800]">
+                    <span id="year-output" class="text-[hsl(259,100%,65%)]"
+                        >--</span
+                    > years
+                </p>
+                <p class="font-[800]">
+                    <span id="month-output" class="text-[hsl(259,100%,65%)]"
+                        >--</span
+                    > months
+                </p>
+                <p class="font-[800]">
+                    <span id="day-output" class="text-[hsl(259,100%,65%)]"
+                        >--</span
+                    > days
+                </p>
+            </div>
+        </div>
+
+        <script type="module" src="./src/js/main.js"></script>
+    </body>
 </html>
