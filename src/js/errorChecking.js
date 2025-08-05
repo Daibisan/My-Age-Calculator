@@ -73,7 +73,7 @@ export function checkInputValidation() {
             hideInlineError(dayInputElm);
 
             // Check invalid date (days is more than total days in the month)
-            sisInvalid = checkDateValidation();
+            isInvalid = checkDateValidation();
 
         }
 

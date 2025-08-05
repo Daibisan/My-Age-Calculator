@@ -5,7 +5,7 @@ import { displayAgeResult } from "./UI.js";
 export default function init() {
 
     // Trigger submit on clicked
-    const submit_btn = document.getElementById("submit-btn-container");
+    const submit_btn = document.getElementById("submit-btn");
     submit_btn.addEventListener("click", ageCalculatorOnSubmit);
 
     // Trigger submit on enter
