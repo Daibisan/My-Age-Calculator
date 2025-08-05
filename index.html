@@ -24,7 +24,7 @@
             <div id="upper">
                 <ul
                     id="input-container"
-                    class="flex justify-center gap-3 text-[0.5rem] sm:text-[0.6rem] md:text-[0.7rem] lg:justify-start lg:gap-5"
+                    class="flex justify-center gap-3 text-[0.4rem] sm:text-[0.5rem] md:text-[0.55rem] lg:justify-start lg:gap-5"
                 >
                     <li>
                         <label
@@ -36,8 +36,12 @@
                             type="text"
                             id="day-input"
                             placeholder="DD"
+                            name="dayValue"
                             class="mt-1 w-full max-w-16 rounded-[5px] border-[1px] border-[hsl(0,0%,86%)] px-2 py-2 text-sm font-[700] outline-none focus:border-[hsl(259,100%,65%)] sm:max-w-20 sm:text-base md:max-w-24 md:px-3 md:text-lg lg:max-w-26 lg:px-4 lg:text-xl"
                         />
+                        <p
+                            class="inline-error-text mt-1 hidden font-[500] text-[hsl(0,100%,67%)] italic"
+                        ></p>
                     </li>
                     <li>
                         <label
@@ -49,8 +53,12 @@
                             type="text"
                             id="month-input"
                             placeholder="MM"
+                            name="monthValue"
                             class="mt-1 w-full max-w-16 rounded-[5px] border-[1px] border-[hsl(0,0%,86%)] px-2 py-2 text-sm font-[700] outline-none focus:border-[hsl(259,100%,65%)] sm:max-w-20 sm:text-base md:max-w-24 md:px-3 md:text-lg lg:max-w-26 lg:px-4 lg:text-xl"
                         />
+                        <p
+                            class="inline-error-text mt-1 hidden font-[500] text-[hsl(0,100%,67%)] italic"
+                        ></p>
                     </li>
                     <li>
                         <label
@@ -62,8 +70,12 @@
                             type="text"
                             id="year-input"
                             placeholder="YYYY"
+                            name="yearValue"
                             class="mt-1 w-full max-w-16 rounded-[5px] border-[1px] border-[hsl(0,0%,86%)] px-2 py-2 text-sm font-[700] outline-none focus:border-[hsl(259,100%,65%)] sm:max-w-20 sm:text-base md:max-w-24 md:px-3 md:text-lg lg:max-w-26 lg:px-4 lg:text-xl"
                         />
+                        <p
+                            class="inline-error-text mt-1 hidden font-[500] text-[hsl(0,100%,67%)] italic"
+                        ></p>
                     </li>
                 </ul>
                 <div
@@ -71,8 +83,9 @@
                     class="relative mt-11 mb-11 sm:mt-13 sm:mb-13 md:mt-15 md:mb-15 lg:static lg:mt-0 lg:mb-0 lg:flex lg:items-center"
                 >
                     <hr class="text-[hsl(0,0%,86%)] lg:w-[25.5rem]" />
-                    <div
+                    <button
                         id="submit-btn"
+                        type="button"
                         class="absolute top-1/2 right-1/2 w-fit translate-x-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-[hsl(259,100%,65%)] p-3 transition select-none hover:bg-[hsl(0,0%,0%)] sm:p-4 lg:static lg:translate-x-0 lg:translate-y-0"
                     >
                         <img
@@ -80,7 +93,7 @@
                             alt="Submit Arrow Image"
                             class="size-5 sm:size-6 md:size-7"
                         />
-                    </div>
+                    </button>
                 </div>
             </div>
             <div
@@ -89,18 +102,21 @@
             >
                 <p class="font-[800]">
                     <span id="year-output" class="text-[hsl(259,100%,65%)]"
-                        >--</span
-                    > years
+                        >- -</span
+                    >
+                    years
                 </p>
                 <p class="font-[800]">
                     <span id="month-output" class="text-[hsl(259,100%,65%)]"
-                        >--</span
-                    > months
+                        >- -</span
+                    >
+                    months
                 </p>
                 <p class="font-[800]">
                     <span id="day-output" class="text-[hsl(259,100%,65%)]"
-                        >--</span
-                    > days
+                        >- -</span
+                    >
+                    days
                 </p>
             </div>
         </div>

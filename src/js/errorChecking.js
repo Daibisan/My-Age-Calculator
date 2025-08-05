@@ -1,64 +1,143 @@
-let yearElm = null;
-let monthElm = null;
-let dayElm = null;
+import { hideInlineError, showInlineError } from "./UI.js";
+
+// Input elements
+let yearInputElm = null;
+let monthInputElm = null;
+let dayInputElm = null;
 
 export function checkEmptyInput(birthElements) {
     
     let isEmpty = false;
-    yearElm = birthElements.birthYearElm;
-    monthElm = birthElements.birthMonthElm;
-    dayElm = birthElements.birthDayElm;
+    const errorMsg = 'This field is required';
 
-    if (dayElm.value === '') {
+    // Set input elements
+    yearInputElm = birthElements.birthYearElm;
+    monthInputElm = birthElements.birthMonthElm;
+    dayInputElm = birthElements.birthDayElm;    
+
+    // Check Day
+    if (dayInputElm.value.trim() === '') {
+
         isEmpty = true;
-        console.log('input day kosong');
+        showInlineError(dayInputElm, errorMsg);
+
+    } else {
+        hideInlineError(dayInputElm);
     }
 
-    if (monthElm.value === '') {
+    // Check Month
+    if (monthInputElm.value.trim() === '') {
+
         isEmpty = true;
-        console.log('input bulan kosong');
+        showInlineError(monthInputElm, errorMsg);
+
+    } else {
+        hideInlineError(monthInputElm);
     }
     
-    if (yearElm.value === '') {
-        isEmpty = true;
-        console.log('input tahun kosong');
-    }
+    // Check Year
+    if (yearInputElm.value.trim() === '') {
 
+        isEmpty = true;
+        showInlineError(yearInputElm, errorMsg);
+
+    } else {
+        hideInlineError(yearInputElm);
+    }
     return isEmpty;
 }
 
 export function checkInputValidation() {
     
     let isInvalid = false;
-
-    // Get Birth Date Values
-    const birthDay = Number(dayElm.value);
-    const birthMonth = Number(monthElm.value);
-    const birthYear = Number(yearElm.value);
     
-    // Check Day
-    if (typeof birthDay !== 'number' || birthDay < 0 || birthDay > 31) {
-        isInvalid = true;
-        console.log('Invalid Day');
+    // Get input raw values
+    const dayInputValue = dayInputElm.value.trim();
+    const monthInputValue = monthInputElm.value.trim();
+    const yearInputValue = yearInputElm.value.trim();
+
+    // Parse input raw values into Number
+    const birthDay = Number(dayInputValue);
+    const birthMonth = Number(monthInputValue);
+    const birthYear = Number(yearInputValue);
+
+    // Check Day (if day's raw value is not empty)
+    if (dayInputValue !== '') {
+        
+        if (isNaN(birthDay) || birthDay <= 0 || birthDay > 31) {
+            isInvalid = true;
+            showInlineError(dayInputElm, 'Must be a valid day');
+        }
+        else { // Hide error and then run check 2 (checkDateValidation)
+
+            hideInlineError(dayInputElm);
+
+            // Check invalid date (days is more than total days in the month)
+            sisInvalid = checkDateValidation();
+
+        }
+
     }
 
-    // Check Month
-    if (typeof birthMonth !== 'number' || birthMonth < 0 || birthMonth > 12) {
-        isInvalid = true;
-        console.log('Invalid Month');
+    // Check Month (if month's raw value is not empty)
+    if (monthInputValue !== '') {
+        
+        if (isNaN(birthMonth) || birthMonth <= 0 || birthMonth > 12) {
+            isInvalid = true;
+            showInlineError(monthInputElm, 'Must be a valid month');
+        }
+        else {
+            hideInlineError(monthInputElm);
+        }
+
     }
     
-    // Check Year
-    if (typeof birthYear !== 'number' || birthYear < 0) {
-        isInvalid = true;
-        console.log('Invalid Year');
-    }
+    // Check Year (if year's raw value is not empty)
+    if (yearInputValue !== '') {
 
-    const nowYear = new Date().getFullYear();
-    if (birthYear > nowYear) {
-        isInvalid = true;
-        console.log('Year must be in the past');
+        // Check invalid year is NaN OR negative number
+        if (isNaN(birthYear) || birthYear <= 0) { 
+            isInvalid = true;
+            showInlineError(yearInputElm, 'Must be a valid year');
+        }
+        else { // Hide error and then run check 2 (check invalid year is in the future)
+            hideInlineError(yearInputElm);
+            isInvalid = checkYearIsInTheFuture(birthYear);
+        }
+    
     }
-
     return isInvalid;
+}
+
+function checkDateValidation() {
+    
+    let dateIsInvalid = false;
+
+    const daysInAMonth = new Date(yearInputElm.value, monthInputElm.value, 0).getDate();
+    const birthDay = Number(dayInputElm.value);
+    
+    if (birthDay > daysInAMonth) {
+        showInlineError(dayInputElm, 'Must be a valid date');
+        dateIsInvalid = true;
+    }
+    else {
+        hideInlineError(dayInputElm);
+    }
+    return dateIsInvalid;
+}
+
+function checkYearIsInTheFuture(birthYear) {
+    
+    let yearIsInTheFuture = false;
+    // Check invalid year is in the future
+    const nowYear = new Date().getFullYear();
+    if (birthYear > nowYear) { 
+
+        showInlineError(yearInputElm, 'Must be in the past');
+        yearIsInTheFuture = true;
+
+    } else {
+        hideInlineError(yearInputElm);
+    }
+    return yearIsInTheFuture;
 }
